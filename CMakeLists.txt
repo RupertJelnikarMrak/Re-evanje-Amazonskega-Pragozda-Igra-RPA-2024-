@@ -20,21 +20,14 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR})
 # SDL2 setup
 find_package(SDL2 REQUIRED)
 find_package(SDL2_Image REQUIRED)
-# ? Note: Folder here should contain both SDL2 and SDL2_image files!
-#set(SDL2_PATH C:/SDL2)
-#set(SDL2_LIB_PATH ${SDL2_PATH}/lib)
-#set(SDL2_INCLUDE_PATH ${SDL2_PATH}/include)
-#set(SDL2_BIN_PATH ${SDL2_LIBRARY}/bin)
 
-# Setup include and link directories
+# Spdlog setup
+if(NOT TARGET spdlog)
+    find_package(spdlog REQUIRED)
+endif()
 
 include_directories(
     ${CMAKE_INCLUDE_PATH}
-    ${SDL2_INCLUDE_PATH}
-)
-
-link_directories(
-    ${SDL2_LIB_PATH}
 )
 
 # Files that should be compiled
@@ -58,6 +51,7 @@ target_link_libraries(
     SDL2main
     SDL2
     SDL2_image
+    spdlog::spdlog
 )
 
 # Copy over static files
