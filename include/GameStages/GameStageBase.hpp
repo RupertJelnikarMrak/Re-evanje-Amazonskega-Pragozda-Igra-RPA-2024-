@@ -13,7 +13,7 @@ public:
     virtual ~GameStageBase() = 0;
 
 protected:
-    virtual int processInput() = 0;
+    virtual int pollEvents() = 0;
     virtual int update() = 0;
     virtual int render() = 0;
 };

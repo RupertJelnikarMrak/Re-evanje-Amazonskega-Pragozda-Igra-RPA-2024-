@@ -2,12 +2,16 @@
 
 #include <SDL2/SDL.h>
 
+#include "RenderWindow.hpp"
+
 class GameBase
 {
 protected:
-    SDL_Window *window;
-    SDL_Renderer *renderer;
+    RenderWindow *renderWindow;
+    bool isRunning;
 
 public:
+    GameBase();
+    virtual ~GameBase();
     virtual int init() = 0;
 };

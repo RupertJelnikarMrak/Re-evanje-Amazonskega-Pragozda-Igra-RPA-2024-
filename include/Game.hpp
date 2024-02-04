@@ -6,4 +6,7 @@ class Game : public GameBase
 {
 public:
     int init() override;
+
+    Game();
+    ~Game() override;
 };
