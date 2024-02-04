@@ -2,14 +2,15 @@
 
 #include <SDL2/SDL.h>
 
+#include "RenderWindow.hpp"
+
 class GameStageBase
 {
 protected:
-    const SDL_Window *WINDOW;
-    const SDL_Renderer *RENDERER;
+    RenderWindow *renderWindow;
 
 public:
-    GameStageBase(SDL_Window *, SDL_Renderer *);
+    GameStageBase(RenderWindow *pRenderWindow);
     virtual ~GameStageBase() = 0;
 
 protected:
