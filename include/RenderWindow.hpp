@@ -16,6 +16,7 @@ class RenderWindow
     int _windowPosY;
 
 public:
+    RenderWindow();
     RenderWindow(const char *pTitle, int pWidth, int pHeight, bool pIsFullscreen);
     RenderWindow(const char *pTitle, int pWidth, int pHeight, int pWindowPosX, int pWindowPosY, bool pIsFullscreen);
     ~RenderWindow();

@@ -8,12 +8,12 @@ int RenderWindow::init()
 {
     _window = SDL_CreateWindow(
         _title.c_str(),
-        (_windowPosX == NULL) ? SDL_WINDOWPOS_UNDEFINED : _windowPosX,
-        (_windowPosY == NULL) ? SDL_WINDOWPOS_UNDEFINED : _windowPosY,
+        (_windowPosX == -1) ? SDL_WINDOWPOS_UNDEFINED : _windowPosX,
+        (_windowPosY == -1) ? SDL_WINDOWPOS_UNDEFINED : _windowPosY,
         _width,
         _height,
         _isFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN);
-    
+
     if (_window == nullptr)
     {
         spdlog::error("Failed to create window: {}", SDL_GetError());
@@ -21,17 +21,23 @@ int RenderWindow::init()
     }
 
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED);
-    
+
     if (_renderer == nullptr)
     {
         spdlog::error("Failed to create renderer: {}", SDL_GetError());
         return -1;
     }
-    
+
     return 0;
 }
 
 // * Constructors and Destructors
+
+RenderWindow::RenderWindow()
+{
+    _window = nullptr;
+    _renderer = nullptr;
+}
 
 RenderWindow::RenderWindow(const char *pTitle, int pWidth, int pHeight, bool pIsFullscreen)
 {
@@ -39,8 +45,8 @@ RenderWindow::RenderWindow(const char *pTitle, int pWidth, int pHeight, bool pIs
     _width = pWidth;
     _height = pHeight;
     _isFullscreen = pIsFullscreen;
-    _windowPosX = NULL;
-    _windowPosY = NULL;
+    _windowPosX = -1;
+    _windowPosY = -1;
     spdlog::info("Successfully created RenderWindow: " + _title);
 };
 
