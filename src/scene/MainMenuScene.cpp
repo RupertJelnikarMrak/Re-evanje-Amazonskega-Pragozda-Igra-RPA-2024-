@@ -15,14 +15,13 @@ int MainMenuScene::run()
     return 0;
 }
 
+int MainMenuScene::pollEvents() { return 0; }
+int MainMenuScene::update() { return 0; }
+int MainMenuScene::render() { return 0; }
 
 MainMenuScene::MainMenuScene(RenderWindow *pRenderWindow)
     : SceneBase(pRenderWindow)
 {
-    
-}
-
-MainMenuScene::~MainMenuScene()
-{
-
+    _rWIndow = pRenderWindow;
+    _isRunning = false;
 }
