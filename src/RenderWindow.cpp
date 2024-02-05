@@ -68,7 +68,35 @@ RenderWindow::~RenderWindow()
     spdlog::info("Successfully destructed RenderWindow: " + _title);
 }
 
-// * All of the getters and setters
+
+void RenderWindow::setTitle(const char *pTitle)
+{
+    _title = pTitle;
+    SDL_SetWindowTitle(_window, pTitle);
+}
+
+void RenderWindow::setSize(int pWidth, int pHeight)
+{
+    _width = pWidth;
+    _height = pHeight;
+    SDL_SetWindowSize(_window, pWidth, pHeight);
+}
+
+void RenderWindow::setWindowPos(int pWindowPosX, int pWindowPosY)
+{
+    _windowPosX = pWindowPosX;
+    _windowPosY = pWindowPosY;
+    SDL_SetWindowPosition(_window, pWindowPosX, pWindowPosY);
+}
+
+void RenderWindow::setFullscreen(bool pIsFullscreen)
+{
+    _isFullscreen = pIsFullscreen;
+    SDL_SetWindowFullscreen(_window, pIsFullscreen? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN);
+}
+
+
+// * All of the getters
 
 std::string RenderWindow::getTitle() { return _title; }
 

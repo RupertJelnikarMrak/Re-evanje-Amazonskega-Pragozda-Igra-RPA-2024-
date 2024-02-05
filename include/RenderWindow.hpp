@@ -30,5 +30,8 @@ public:
     int getWindowPosX();
     int getWindowPosY();
 
-    // TODO: add setters to allow changing widow properties
+    void setTitle(const char *pTitle);
+    void setSize(int pWidth, int pHeight);
+    void setFullscreen(bool pIsFullscreen);
+    void setWindowPos(int pWindowPosX, int pWindowPosY);
 };

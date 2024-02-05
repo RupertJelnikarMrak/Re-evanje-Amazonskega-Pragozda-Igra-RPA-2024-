@@ -6,11 +6,12 @@
 
 class Game
 {
-    RenderWindow _rWindow;
+    RenderWindow *_rWindow;
     bool _isRunning;
 
 public:
     Game();
+    ~Game();
 
     int run();
 };

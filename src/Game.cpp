@@ -2,8 +2,8 @@
 
 int Game::run()
 {
-    _rWindow = RenderWindow("Saving Amazon Rainforest", 1280, 720, false);
-    if (_rWindow.init() != 0)
+    _rWindow = new RenderWindow("Saving Amazon Rainforest", 1280, 720, false);
+    if (_rWindow->init() != 0)
         return -1;
 
     return 0;
@@ -12,4 +12,9 @@ int Game::run()
 Game::Game()
 {
     _isRunning = false;
+}
+
+Game::~Game()
+{
+    delete _rWindow;
 }

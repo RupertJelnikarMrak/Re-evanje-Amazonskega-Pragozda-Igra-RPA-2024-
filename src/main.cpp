@@ -16,9 +16,11 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    Game mainGame;
-    int exitCode = mainGame.run();
+    Game *mainGame = new Game;
+    int exitCode = mainGame->run();
 
+    delete mainGame;
+    
     SDL_Quit();
 
     if (exitCode != 0)
