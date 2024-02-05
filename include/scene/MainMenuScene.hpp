@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../RenderWindow.hpp"
 #include "SceneBase.hpp"
 
 class MainMenuScene : public SceneBase
@@ -11,7 +12,6 @@ private:
 
 public:
     MainMenuScene(RenderWindow *pRenderWindow);
-    ~MainMenuScene() override;
 
     int run() override;
 };
