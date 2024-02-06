@@ -6,7 +6,7 @@
 class MainMenuScene : public SceneBase
 {
 private:
-    int pollEvents() override;
+    int processInput() override;
     int update() override;
     int render() override;
 

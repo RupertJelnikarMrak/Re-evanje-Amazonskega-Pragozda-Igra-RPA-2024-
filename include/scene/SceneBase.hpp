@@ -8,7 +8,7 @@ protected:
     RenderWindow *_rWIndow;
     bool _isRunning;
 
-    virtual int pollEvents() = 0;
+    virtual int processInput() = 0;
     virtual int update() = 0;
     virtual int render() = 0;
 
