@@ -2,8 +2,6 @@
 #include <spdlog/spdlog.h>
 #include <SDL2/SDL.h>
 
-#include "Game.hpp"
-
 int main(int argc, char *argv[])
 {
     spdlog::set_level(spdlog::level::info);
@@ -16,11 +14,6 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    Game *mainGame = new Game;
-    int exitCode = mainGame->run();
-
-    delete mainGame;
-    
     SDL_Quit();
 
     if (exitCode != 0)
