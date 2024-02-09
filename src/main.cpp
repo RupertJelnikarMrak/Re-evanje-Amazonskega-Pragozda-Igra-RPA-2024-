@@ -1,24 +1,18 @@
-#include <iostream>
-#include <spdlog/spdlog.h>
-#include <SDL2/SDL.h>
+#include "Game.hpp"
+#include "helper/Constants.hpp"
+#include "logging/Logging.hpp"
 
 int main(int argc, char *argv[])
 {
-    spdlog::set_level(spdlog::level::info);
-    spdlog::set_pattern("[%Y-%m-%d %H:%M:%S] [%l] %v");
+    Const::init(); // Create the constants
 
-    spdlog::info("Initializing SDL2");
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        spdlog::critical("Failed to initialize SDL: ", SDL_GetError());
-        return -1;
-    }
+    Logging::init(); // Set up the Logging system
 
-    SDL_Quit();
+    Game *game = new Game;
 
-    if (exitCode != 0)
-        spdlog::critical(("Game exited with error code: " + std::to_string(exitCode)));
-    else
-        spdlog::info("Game exited successfully");
-    return exitCode;
+    game->init(); // Initialize a new game instance
+
+    delete game;
+
+    return 0;
 }
