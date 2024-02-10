@@ -5,20 +5,26 @@
 #include <unordered_map>
 
 #include "RenderWindow.hpp"
+#include "scenes/BaseScene.hpp"
 
 class Game
 {
 private:
-    static RenderWindow *rWindow;
+    static RenderWindow *_rWindow;
+    static BaseScene *_currentScene;
+    static bool _isRunning;
+    const static char *_latestError;
     
     static void run();
-    static void handleInput();
-    static void update();
-    static void render();
 public:
     Game() = delete;
     Game(const Game &) = delete;
 
-    static void init();
+    static BaseScene *getCurrentScene();
+    static void setCurrentScene(BaseScene *scene);
 
+    static void getError();
+    static void setError(const char *error);
+
+    static void init();
 };
