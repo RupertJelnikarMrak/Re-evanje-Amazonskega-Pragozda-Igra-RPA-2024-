@@ -4,6 +4,5 @@
 
 namespace Const
 {
-    void init();
-    std::string EXE_PATH;
+    std::string getExePath();
 };

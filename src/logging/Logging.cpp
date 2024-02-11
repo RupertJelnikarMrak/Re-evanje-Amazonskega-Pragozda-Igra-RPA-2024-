@@ -18,7 +18,7 @@ void Logging::init()
     //auto time = std::chrono::system_clock::now();
     // TODO: Change the file cycle to archive old logs in timed zip format
 
-    std::string logsPath = Const::EXE_PATH + "\\logs\\";
+    std::string logsPath = Const::getExePath() + "/logs/";
 
     // Cycle through the log files
     if (fileExists(logsPath + "Log5.txt"))

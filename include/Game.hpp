@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <unordered_map>
+#include <string>
 
 #include "RenderWindow.hpp"
 #include "scenes/BaseScene.hpp"
@@ -13,7 +14,7 @@ private:
     static RenderWindow *_rWindow;
     static BaseScene *_currentScene;
     static bool _isRunning;
-    const static char *_latestError;
+    std::string _latestError;
     
     static void run();
 public:
