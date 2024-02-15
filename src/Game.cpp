@@ -8,7 +8,9 @@
 #include <spdlog/spdlog.h>
 #include <iostream>
 
+RenderWindow *Game::_rWindow = nullptr;
 BaseScene *Game::_currentScene = nullptr;
+const char *Game::_latestError = nullptr;
 
 bool Game::_isRunning = false;
 
@@ -26,7 +28,7 @@ void Game::init()
 
     _rWindow = new RenderWindow("Saving Amazon Forest", 500, 500, -1, -1, true);
 
-    run();
+    //run();
 
     SDL_Quit();
 }
@@ -38,6 +40,16 @@ void Game::run()
     {
         _currentScene->runCycle();
     }
+}
+
+void Game::setError(const char *error)
+{
+    _latestError = error;
+}
+
+const char *Game::getError()
+{
+    return _latestError;
 }
 
 BaseScene *Game::getCurrentScene()

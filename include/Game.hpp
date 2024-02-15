@@ -14,7 +14,7 @@ private:
     static RenderWindow *_rWindow;
     static BaseScene *_currentScene;
     static bool _isRunning;
-    std::string _latestError;
+    static const char *_latestError;
     
     static void run();
 public:
@@ -24,7 +24,7 @@ public:
     static BaseScene *getCurrentScene();
     static void setCurrentScene(BaseScene *scene);
 
-    static void getError();
+    static const char *getError();
     static void setError(const char *error);
 
     static void init();
