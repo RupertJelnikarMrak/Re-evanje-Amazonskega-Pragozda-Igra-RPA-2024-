@@ -8,7 +8,7 @@
 #include <spdlog/spdlog.h>
 #include <iostream>
 
-BaseScene* Game::_currentScene = nullptr;
+BaseScene *Game::_currentScene = nullptr;
 
 bool Game::_isRunning = false;
 
@@ -21,6 +21,8 @@ void Game::init()
         setError("Failed to initialize SDL: " + *SDL_GetError());
         return;
     }
+    else
+        spdlog::info("SDL2 initialized successfully");
 
     _rWindow = new RenderWindow("Saving Amazon Forest", 500, 500, -1, -1, true);
 
