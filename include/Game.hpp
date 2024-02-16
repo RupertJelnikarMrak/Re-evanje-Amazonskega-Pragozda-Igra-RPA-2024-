@@ -6,26 +6,28 @@
 #include <string>
 
 #include "RenderWindow.hpp"
-#include "scenes/BaseScene.hpp"
+#include "scenes/Scenes.hpp"
 
 class Game
 {
 private:
     static RenderWindow *_rWindow;
-    static BaseScene *_currentScene;
+    static Scene *_currentScene;
     static bool _isRunning;
     static const char *_latestError;
     
     static void run();
+    static void quit();
 public:
     Game() = delete;
     Game(const Game &) = delete;
 
-    static BaseScene *getCurrentScene();
-    static void setCurrentScene(BaseScene *scene);
+    static Scene *getCurrentScene();
+    static void setCurrentScene(Scene *scene);
 
     static const char *getError();
     static void setError(const char *error);
 
     static void init();
+    static void stop();
 };

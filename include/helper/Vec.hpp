@@ -2,17 +2,19 @@
 
 #include <ostream>
 
-template <typename T>
-class Vec2
+namespace vec
 {
-public:
-    T x, y;
-
-    Vec2(int pX, int pY) : x(pX), y(pY) {}
-
-    template <typename OStream>
-    inline OStream &operator<<(OStream &os, const Vec2<T> &vec)
+    template <typename T>
+    class Vec2
     {
-        return os << "X: " << vec.x << ", Y: " << vec.y;
-    }
-};
+    public:
+        T x, y;
+
+        Vec2(int pX, int pY) : x(pX), y(pY) {}
+
+        char const* c_str() const
+        {
+            return '(' + x + ", " + y + ')';
+        }
+    };
+}

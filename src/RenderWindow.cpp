@@ -15,30 +15,30 @@ SDL_Texture *RenderWindow::loadTexture(const char *pPath)
 
 // Setters and Getters
 
-void RenderWindow::setSize(Vec2<int> pSize)
+void RenderWindow::setSize(vec::Vec2<int> pSize)
 {
-    spdlog::debug("RenderWindow::setSize: {}", pSize);
+    spdlog::debug("RenderWindow::setSize: {}", pSize.c_str());
     _width = pSize.x;
     _height = pSize.y;
     SDL_SetWindowSize(_window, _width, _height);
 }
 
-Vec2<int> RenderWindow::getSize() const
+vec::Vec2<int> RenderWindow::getSize() const
 {
-    return Vec2<int>(_width, _height);
+    return vec::Vec2<int>(_width, _height);
 }
 
-void RenderWindow::setPosition(Vec2<int> pPosition)
+void RenderWindow::setPosition(vec::Vec2<int> pPosition)
 {
-    spdlog::debug("RenderWindow::setPosition: {}", pPosition);
+    spdlog::debug("RenderWindow::setPosition: {}", pPosition.c_str());
     _x = pPosition.x;
     _y = pPosition.y;
     SDL_SetWindowPosition(_window, _x, _y);
 }
 
-Vec2<int> RenderWindow::getPosition() const
+vec::Vec2<int> RenderWindow::getPosition() const
 {
-    return Vec2<int>(_x, _y);
+    return vec::Vec2<int>(_x, _y);
 }
 
 void RenderWindow::setFullscreen(bool pFullscreen)

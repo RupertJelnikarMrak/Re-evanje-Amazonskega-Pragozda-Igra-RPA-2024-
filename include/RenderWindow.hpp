@@ -22,11 +22,11 @@ public:
 
     ~RenderWindow();
 
-    void setSize(Vec2<int> pSize);
-    Vec2<int> getSize() const;
+    void setSize(vec::Vec2<int> pSize);
+    vec::Vec2<int> getSize() const;
 
-    void setPosition(Vec2<int> pPosition);
-    Vec2<int> getPosition() const;
+    void setPosition(vec::Vec2<int> pPosition);
+    vec::Vec2<int> getPosition() const;
 
     void setFullscreen(bool pFullscreen);
     bool isFullscreen() const;
@@ -34,5 +34,5 @@ public:
     /*-------------------------------------------------------*/
 
     SDL_Texture *loadTexture(const char *pPath);
-    void drawTexture(SDL_Texture *pTexture, Vec2<int> pPos, Vec2<int> pSrcSize, Vec2<int> pDstSize);
+    void drawTexture(SDL_Texture *pTexture, vec::Vec2<int> pPos, vec::Vec2<int> pSrcSize, vec::Vec2<int> pDstSize);
 };

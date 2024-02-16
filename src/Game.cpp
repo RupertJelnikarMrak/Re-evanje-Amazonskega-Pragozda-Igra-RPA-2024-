@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "scenes/BaseScene.hpp"
+#include "scenes/Scenes.hpp"
 #include "events/EventBus.hpp"
 #include "events/Events.hpp"
 
@@ -9,7 +9,7 @@
 #include <iostream>
 
 RenderWindow *Game::_rWindow = nullptr;
-BaseScene *Game::_currentScene = nullptr;
+Scene *Game::_currentScene = nullptr;
 const char *Game::_latestError = nullptr;
 
 bool Game::_isRunning = false;
@@ -28,9 +28,25 @@ void Game::init()
 
     _rWindow = new RenderWindow("Saving Amazon Forest", 500, 500, -1, -1, true);
 
-    //run();
+    _currentScene = new TestScene(_rWindow);
 
+    run();
+
+    quit();
+}
+
+void Game::quit()
+{
+    spdlog::info("Exiting...");
+    delete _currentScene;
+    delete _rWindow;
     SDL_Quit();
+}
+
+void Game::stop()
+{
+    spdlog::info("Stopping game loop");
+    _isRunning = false;
 }
 
 void Game::run()
@@ -52,12 +68,12 @@ const char *Game::getError()
     return _latestError;
 }
 
-BaseScene *Game::getCurrentScene()
+Scene *Game::getCurrentScene()
 {
     return _currentScene;
 }
 
-void Game::setCurrentScene(BaseScene *pScene)
+void Game::setCurrentScene(Scene *pScene)
 {
     _currentScene = pScene;
 }
