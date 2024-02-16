@@ -23,7 +23,7 @@ void Game::init()
         return;
     }
 
-    _rWindow = new RenderWindow("Saving Amazon Forest", 500, 500, -1, -1, true);
+    _rWindow = new RenderWindow("Saving Amazon Forest", 500, 500, -1, -1, false);
 
     _currentScene = new TestScene(_rWindow);
 

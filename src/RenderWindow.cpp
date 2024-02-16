@@ -14,11 +14,16 @@ SDL_Texture *RenderWindow::loadTexture(const char *pPath)
     return IMG_LoadTexture(_renderer, pPath);
 }
 
+void RenderWindow::drawTexture(SDL_Texture *pTexture, SDL_Rect *pDestRect, SDL_Rect *pSrcRect)
+{
+    SDL_RenderCopy(_renderer, pTexture, pSrcRect, pDestRect);
+}
+
 // Setters and Getters
 
 void RenderWindow::setSize(vec::Vec2<int> pSize)
 {
-    spdlog::debug("RenderWindow::setSize: {}", pSize.c_str());
+    spdlog::debug("RenderWindow::setSize: {}", pSize.to_string());
     _width = pSize.x;
     _height = pSize.y;
     SDL_SetWindowSize(_window, _width, _height);
@@ -31,7 +36,7 @@ vec::Vec2<int> RenderWindow::getSize() const
 
 void RenderWindow::setPosition(vec::Vec2<int> pPosition)
 {
-    spdlog::debug("RenderWindow::setPosition: {}", pPosition.c_str());
+    spdlog::debug("RenderWindow::setPosition: {}", pPosition.to_string());
     _x = pPosition.x;
     _y = pPosition.y;
     SDL_SetWindowPosition(_window, _x, _y);
@@ -44,6 +49,7 @@ vec::Vec2<int> RenderWindow::getPosition() const
 
 void RenderWindow::setFullscreen(bool pFullscreen)
 {
+    spdlog::debug("RenderWindow::setFullscreen: {}", pFullscreen);
     _isFullscreen = pFullscreen;
     SDL_SetWindowFullscreen(_window, _isFullscreen ? SDL_WINDOW_FULLSCREEN : 0);
 }

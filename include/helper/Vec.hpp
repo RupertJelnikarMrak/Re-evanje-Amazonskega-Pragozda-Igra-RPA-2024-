@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ostream>
+#include <string>
 
 namespace vec
 {
@@ -12,9 +13,9 @@ namespace vec
 
         Vec2(int pX, int pY) : x(pX), y(pY) {}
 
-        char const* c_str() const
+        std::string to_string() const
         {
-            return '(' + x + ", " + y + ')';
-        }
+            return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
+        }        
     };
 }

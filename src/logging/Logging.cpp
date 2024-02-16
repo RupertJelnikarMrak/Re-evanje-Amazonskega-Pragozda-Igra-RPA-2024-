@@ -39,8 +39,6 @@ void Logging::init()
 
     auto logger = std::make_shared<spdlog::logger>("main_logger", begin(sinks), end(sinks));
 
-    //auto logger = spdlog::basic_logger_mt("game_file_logger", (logsPath + "Latest.txt").c_str());
-    
     spdlog::set_default_logger(logger);
     spdlog::flush_on(spdlog::level::info);
     spdlog::set_level(spdlog::level::info);

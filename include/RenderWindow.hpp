@@ -34,5 +34,5 @@ public:
     /*-------------------------------------------------------*/
 
     SDL_Texture *loadTexture(const char *pPath);
-    void drawTexture(SDL_Texture *pTexture, vec::Vec2<int> pPos, vec::Vec2<int> pSrcSize, vec::Vec2<int> pDstSize);
+    void drawTexture(SDL_Texture *pTexture, SDL_Rect *pDestRect, SDL_Rect *pSrcRect = nullptr);
 };
