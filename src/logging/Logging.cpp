@@ -1,10 +1,12 @@
 #include "logging/Logging.hpp"
 #include "helper/Constants.hpp"
 
+#include <vector>
 #include <fstream>
 #include <chrono>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/stdout_sinks.h>
 
 
 bool fileExists(const std::string &pFileName)
@@ -31,7 +33,13 @@ void Logging::init()
     if (fileExists(logsPath + "Latest.txt"))
         std::rename((logsPath + "Latest.txt").c_str(), (logsPath + "Log1.txt").c_str());
 
-    auto logger = spdlog::basic_logger_mt("game_file_logger", (logsPath + "Latest.txt").c_str());
+    std::vector<spdlog::sink_ptr> sinks;
+    sinks.push_back(std::make_shared<spdlog::sinks::stdout_sink_st>());
+    sinks.push_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>(logsPath + "Latest.txt"));
+
+    auto logger = std::make_shared<spdlog::logger>("main_logger", begin(sinks), end(sinks));
+
+    //auto logger = spdlog::basic_logger_mt("game_file_logger", (logsPath + "Latest.txt").c_str());
     
     spdlog::set_default_logger(logger);
     spdlog::flush_on(spdlog::level::info);

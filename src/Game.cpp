@@ -10,8 +10,7 @@
 
 RenderWindow *Game::_rWindow = nullptr;
 Scene *Game::_currentScene = nullptr;
-const char *Game::_latestError = nullptr;
-
+Game::GameError Game::_latestError = Game::GameError(0, nullptr);
 bool Game::_isRunning = false;
 
 void Game::init()
@@ -20,11 +19,9 @@ void Game::init()
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         spdlog::critical("Failed to initialize SDL: " + *SDL_GetError());
-        setError("Failed to initialize SDL: " + *SDL_GetError());
+        setError(-1, "Failed to initialize SDL: " + *SDL_GetError());
         return;
     }
-    else
-        spdlog::info("SDL2 initialized successfully");
 
     _rWindow = new RenderWindow("Saving Amazon Forest", 500, 500, -1, -1, true);
 
@@ -37,10 +34,10 @@ void Game::init()
 
 void Game::quit()
 {
-    spdlog::info("Exiting...");
     delete _currentScene;
     delete _rWindow;
     SDL_Quit();
+    spdlog::info("Exiting...");
 }
 
 void Game::stop()
@@ -51,6 +48,7 @@ void Game::stop()
 
 void Game::run()
 {
+    spdlog::info("Starting game loop");
     _isRunning = true;
     while (_isRunning)
     {
@@ -58,12 +56,13 @@ void Game::run()
     }
 }
 
-void Game::setError(const char *error)
+void Game::setError(int pCode, const char *pMessage)
 {
-    _latestError = error;
+    _latestError.code = pCode;
+    _latestError.message = pMessage;
 }
 
-const char *Game::getError()
+const Game::GameError &Game::getError()
 {
     return _latestError;
 }

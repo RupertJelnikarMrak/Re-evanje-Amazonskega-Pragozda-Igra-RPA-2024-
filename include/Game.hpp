@@ -14,21 +14,25 @@ private:
     static RenderWindow *_rWindow;
     static Scene *_currentScene;
     static bool _isRunning;
-    static const char *_latestError;
+    static struct GameError
+    {
+        int code;
+        const char *message;
+    } _latestError;
 
-    static void run();
-    static void quit();
+    static void run(); // Runs the game loop
+    static void quit(); // Cleans up and exits the program
 
 public:
     Game() = delete;
     Game(const Game &) = delete;
 
-    static void init();
-    static void stop();
+    static void init(); // Called to start the game
+    static void stop(); // Called to stop the game
 
     static Scene *getCurrentScene();
     static void setCurrentScene(Scene *scene);
 
-    static const char *getError();
-    static void setError(const char *error);
+    static const GameError &getError();
+    static void setError(int code, const char *error);
 };

@@ -1,6 +1,7 @@
 #include "RenderWindow.hpp"
 
 #include "helper/Vec.hpp"
+#include "Game.hpp"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -57,19 +58,46 @@ bool RenderWindow::isFullscreen() const
 RenderWindow::RenderWindow(const char *pTitle, int pW, int pH, int pX, int pY, bool pFullscreen)
     : _width(pW), _height(pH), _x(pX), _y(pY), _isFullscreen(pFullscreen)
 {
+    spdlog::info("Opening window: {}", pTitle);
     _window = SDL_CreateWindow(pTitle, pX, pY, pW, pH, pFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN);
+    if (_window == nullptr)
+    {
+        spdlog::critical("Failed to create window: {}", SDL_GetError());
+        Game::setError(-1, "Failed to create window: " + *SDL_GetError());
+        Game::stop();
+    }
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (_renderer == nullptr)
+    {
+        spdlog::critical("Failed to create renderer: {}", SDL_GetError());
+        Game::setError(-1, "Failed to create renderer: " + *SDL_GetError());
+        Game::stop();
+    }
 }
 
 RenderWindow::RenderWindow(const char *pTitle, int pW, int pH, bool pFullscreen)
     : _width(pW), _height(pH), _isFullscreen(pFullscreen)
 {
+    spdlog::info("Opening window: {}", pTitle);
     _window = SDL_CreateWindow(pTitle, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, pW, pH, pFullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : SDL_WINDOW_SHOWN);
+    if (_window == nullptr)
+    {
+        spdlog::critical("Failed to create window: {}", SDL_GetError());
+        Game::setError(-1, "Failed to create window: " + *SDL_GetError());
+        Game::stop();
+    }
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (_renderer == nullptr)
+    {
+        spdlog::critical("Failed to create renderer: {}", SDL_GetError());
+        Game::setError(-1, "Failed to create renderer: " + *SDL_GetError());
+        Game::stop();
+    }
 }
 
 RenderWindow::~RenderWindow()
 {
+    spdlog::info("Closing window: {}", SDL_GetWindowTitle(_window));
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_window);
 }
