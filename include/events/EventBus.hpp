@@ -9,9 +9,8 @@
 #define EVENT_PRIORITY_LOW 3
 #define EVENT_PRIORITY_LOWEST 4
 
-class EventBus
+namespace EventBus
 {
-public:
     template <typename EventType>
     using Listener = std::function<void(const EventType &)>;
 
@@ -35,11 +34,12 @@ public:
             pair.second(pEvent);
     }
 
-private:
-    template <typename EventType>
-    std::multimap<int, Listener<EventType>> &getListeners()
-    {
-        static std::multimap<int, Listener<EventType>> listeners;
-        return listeners;
+    namespace {
+        template <typename EventType>
+        static std::multimap<int, Listener<EventType>> &getListeners()
+        {
+            static std::multimap<int, Listener<EventType>> listeners;
+            return listeners;
+        }
     }
 };

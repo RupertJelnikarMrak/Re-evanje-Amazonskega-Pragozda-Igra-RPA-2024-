@@ -8,11 +8,6 @@
 #include <spdlog/spdlog.h>
 #include <iostream>
 
-RenderWindow *Game::_rWindow = nullptr;
-Scene *Game::_currentScene = nullptr;
-Game::GameError Game::_latestError = Game::GameError(0, nullptr);
-bool Game::_isRunning = false;
-
 void Game::init()
 {
     spdlog::info("Initializing SDL2");

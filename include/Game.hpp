@@ -8,31 +8,29 @@
 #include "RenderWindow.hpp"
 #include "scenes/Scenes.hpp"
 
-class Game
+namespace Game
 {
-private:
-    static RenderWindow *_rWindow;
-    static Scene *_currentScene;
-    static bool _isRunning;
-    static struct GameError
+    namespace
     {
-        int code;
-        const char *message;
-    } _latestError;
+        RenderWindow *_rWindow = nullptr;
+        Scene *_currentScene = nullptr;
+        bool _isRunning = false;
+        struct GameError
+        {
+            int code;
+            const char *message;
+        } _latestError;
+    }
 
-    static void run(); // Runs the game loop
-    static void quit(); // Cleans up and exits the program
+    void run();  // Runs the game loop
+    void quit(); // Cleans up and exits the program
 
-public:
-    Game() = delete;
-    Game(const Game &) = delete;
+    void init(); // Called to start the game
+    void stop(); // Called to stop the game
 
-    static void init(); // Called to start the game
-    static void stop(); // Called to stop the game
+    Scene *getCurrentScene();
+    void setCurrentScene(Scene *scene);
 
-    static Scene *getCurrentScene();
-    static void setCurrentScene(Scene *scene);
-
-    static const GameError &getError();
-    static void setError(int code, const char *error);
+    const GameError &getError();
+    void setError(int code, const char *error);
 };
