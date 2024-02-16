@@ -15,19 +15,20 @@ private:
     static Scene *_currentScene;
     static bool _isRunning;
     static const char *_latestError;
-    
+
     static void run();
     static void quit();
+
 public:
     Game() = delete;
     Game(const Game &) = delete;
+
+    static void init();
+    static void stop();
 
     static Scene *getCurrentScene();
     static void setCurrentScene(Scene *scene);
 
     static const char *getError();
     static void setError(const char *error);
-
-    static void init();
-    static void stop();
 };
