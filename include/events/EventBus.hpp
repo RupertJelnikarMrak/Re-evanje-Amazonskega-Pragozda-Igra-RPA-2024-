@@ -14,6 +14,16 @@ namespace EventBus
     template <typename EventType>
     using Listener = std::function<void(const EventType &)>;
 
+    namespace
+    {
+        template <typename EventType>
+        static std::multimap<int, Listener<EventType>> &getListeners()
+        {
+            static std::multimap<int, Listener<EventType>> listeners;
+            return listeners;
+        }
+    }
+
     template <typename EventType>
     void addListener(const Listener<EventType> &pListener, int pPriority)
     {
@@ -32,14 +42,5 @@ namespace EventBus
         auto &listeners = getListeners<EventType>();
         for (const auto &pair : listeners)
             pair.second(pEvent);
-    }
-
-    namespace {
-        template <typename EventType>
-        static std::multimap<int, Listener<EventType>> &getListeners()
-        {
-            static std::multimap<int, Listener<EventType>> listeners;
-            return listeners;
-        }
     }
 };

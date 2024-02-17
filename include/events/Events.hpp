@@ -9,7 +9,7 @@ protected:
 public:
     GameEvent(std::string name) : name(name) {}
 
-    std::string getName() const { return name; }
+    virtual std::string getName() const { return name; }
 };
 
 class TestGameEvent : public GameEvent

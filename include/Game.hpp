@@ -10,8 +10,7 @@
 
 namespace Game
 {
-    namespace
-    {
+    namespace {
         RenderWindow *_rWindow = nullptr;
         Scene *_currentScene = nullptr;
         bool _isRunning = false;
@@ -21,7 +20,7 @@ namespace Game
             const char *message;
         } _latestError;
     }
-
+    
     void run();  // Runs the game loop
     void quit(); // Cleans up and exits the program
 
